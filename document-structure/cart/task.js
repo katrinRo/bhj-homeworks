@@ -21,6 +21,9 @@ for (const i of addBtn) {
         const product = i.closest('.product');
         const productImg = product.querySelector('.product__image').src;
         const productValue = product.querySelector('.product__quantity-value').innerText;
+	if (productValue <= 0) {
+	alert ("Не верное количество");
+	} else {
         const idProduct = product.getAttribute('data-id');
         let carts = document.querySelector('.cart__products');
         const allCard = document.querySelectorAll('.cart__product');
@@ -39,5 +42,6 @@ for (const i of addBtn) {
         `;
             carts.appendChild(div);
         }
+}
     })
 }
