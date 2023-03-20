@@ -7,12 +7,18 @@ for (const i of hasTooltip) {
     const {left, top} = i.getBoundingClientRect();
     help.style.marginTop = 5 + 'px';
     help.style.left = left + 'px';
-    i.insertAdjacentElement('afterend', help)
+    i.insertAdjacentElement('afterend', help);
     i.addEventListener('click', (e) => {
         e.preventDefault();
         const isHelp = document.querySelector('.tooltip_active');
         if (isHelp) {
             isHelp.classList.remove('tooltip_active');
+            console.log(isHelp.textContent)
+            console.log(i.title)
+            if (isHelp.textContent === i.title){
+                console.log('2')
+                return false;
+            }
         }
         help.classList.add('tooltip_active');
     })
