@@ -24,6 +24,6 @@ addBtn.addEventListener('click', (e) => {
         addTask(inputText.value);
         inputText.value = "";
         const removeBtn = document.querySelectorAll('.task__remove');
-        removeBtn[i].addEventListener('click', removeTask);
+        removeBtn[removeBtn.length - 1].addEventListener('click', removeTask);
     }
 });
