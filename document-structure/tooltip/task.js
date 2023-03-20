@@ -13,10 +13,7 @@ for (const i of hasTooltip) {
         const isHelp = document.querySelector('.tooltip_active');
         if (isHelp) {
             isHelp.classList.remove('tooltip_active');
-            console.log(isHelp.textContent)
-            console.log(i.title)
             if (isHelp.textContent === i.title){
-                console.log('2')
                 return false;
             }
         }
