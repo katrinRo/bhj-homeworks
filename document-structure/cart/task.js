@@ -6,7 +6,7 @@ for (const i of quantity) {
         const parent = i.parentElement;
         const count = parent.querySelector('.product__quantity-value');
         if (i.classList.contains('product__quantity-control_dec')) {
-            if (count != 0){
+            if (Number(count.innerText) > 1){
                 count.innerText = Number(count.innerText) - 1;
             }
         } else {
@@ -21,9 +21,6 @@ for (const i of addBtn) {
         const product = i.closest('.product');
         const productImg = product.querySelector('.product__image').src;
         const productValue = product.querySelector('.product__quantity-value').innerText;
-	if (productValue <= 0) {
-	alert ("Не верное количество");
-	} else {
         const idProduct = product.getAttribute('data-id');
         let carts = document.querySelector('.cart__products');
         const allCard = document.querySelectorAll('.cart__product');
@@ -36,12 +33,11 @@ for (const i of addBtn) {
             div.classList.add('cart__product');
             div.setAttribute('data-id', idProduct);
             div.innerHTML +=  `
-        <img class ="cart__product-image" src="${productImg}">
-        <div class = "cart__product-count">${productValue}
-        </div>
-        `;
+            <img class ="cart__product-image" src="${productImg}">
+            <div class = "cart__product-count">${productValue}
+            </div>
+            `;
             carts.appendChild(div);
         }
-}
     })
 }
