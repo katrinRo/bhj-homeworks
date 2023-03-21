@@ -37,7 +37,8 @@ function addMessage(text, date) {
 }
 
 input.addEventListener('keyup', (e) => {
-    if (e.keyCode === 13) {
+    var str = e.target.value.trim();
+    if (str != "" && e.keyCode === 13) {
         addMessage(e.target.value, new Date());
         e.target.value = '';
     }
