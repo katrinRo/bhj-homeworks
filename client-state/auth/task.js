@@ -2,23 +2,34 @@ const formSign = document.getElementById('signin__form');
 const blockWelcome = document.getElementById('welcome');
 const userId = document.getElementById('user_id');
 
+console.log(localStorage)
 formSign.addEventListener("submit", e=> {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "https://students.netoservices.ru/nestjs-backend/auth");
     const fd = new FormData(formSign);
+    xhr.responseType = 'json';
     xhr.send(fd);
-    xhr.onreadystatechange = function () {
+
+    xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
-            const resp = JSON.parse(xhr.responseText);
-            if (resp.success) {
+            if (xhr.response.success) {
+                localStorage.setItem("userId", xhr.response.user_id);
+                formSign.reset();
                 const parent = formSign.parentElement;
                 parent.classList.remove("signin_active");
                 blockWelcome.classList.add("welcome_active");
-                userId.textContent = resp.user_id;
+                userId.textContent = xhr.response.user_id;
             } else{
                 alert("Неверный логин или пароль");
             }
         }
-    }
+    })
     e.preventDefault();
 })
+
+if (localStorage.getItem("userId")) {
+    const parent = formSign.parentElement;
+    parent.classList.remove("signin_active");
+    blockWelcome.classList.add("welcome_active");
+    userId.textContent = localStorage.userId;
+}
