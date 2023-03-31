@@ -2,7 +2,6 @@ const formSign = document.getElementById('signin__form');
 const blockWelcome = document.getElementById('welcome');
 const userId = document.getElementById('user_id');
 
-console.log(localStorage)
 formSign.addEventListener("submit", e=> {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "https://students.netoservices.ru/nestjs-backend/auth");
